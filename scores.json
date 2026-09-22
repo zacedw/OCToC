@@ -1,6 +1,26 @@
 {
  "games": [
-  null,
+  {
+   "name": "Best Ball",
+   "format": "two",
+   "rec": true,
+   "place": {
+    "art": 1,
+    "eric": 2,
+    "zack": 3,
+    "john": 1,
+    "bryan": 2,
+    "josh": 3
+   },
+   "gross": {
+    "art": 44,
+    "eric": 45,
+    "zack": 46,
+    "john": 42,
+    "bryan": 44,
+    "josh": 46
+   }
+  },
   null,
   null,
   null,
@@ -10,5 +30,5 @@
   null
  ],
  "bulletin": "",
- "updated": null
+ "updated": "2026-09-22T00:34:03.256Z"
 }
