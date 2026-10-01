@@ -1,26 +1,6 @@
 {
  "games": [
-  {
-   "name": "Best Ball",
-   "format": "two",
-   "rec": true,
-   "place": {
-    "art": 1,
-    "eric": 3,
-    "zack": 2,
-    "john": 2,
-    "bryan": 3,
-    "josh": 1
-   },
-   "gross": {
-    "art": 45,
-    "eric": 48,
-    "zack": 46,
-    "john": 50,
-    "bryan": 51,
-    "josh": 44
-   }
-  },
+  null,
   null,
   null,
   null,
@@ -30,5 +10,5 @@
   null
  ],
  "bulletin": "Close match after the first 9",
- "updated": "2026-09-30T03:35:56.816Z"
+ "updated": "2026-10-01T03:30:51.228Z"
 }
