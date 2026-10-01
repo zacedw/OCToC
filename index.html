@@ -260,6 +260,19 @@ details .body ul{margin:0 0 12px;padding-left:18px}
 .pgame.champ .gn{color:var(--brass)}
 .pgame.fun .gn{color:var(--chalk-dim)}
 .tees{border-radius:4px 4px 0 0}
+.wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:4px;overflow:hidden}
+.wx-c{background:var(--board);padding:18px 20px}
+.wx-c h4{font-family:var(--display);font-weight:700;font-size:21px;margin:0}
+.wx-c .rd{font-family:var(--display);font-size:14px;letter-spacing:.05em;color:var(--chalk-dim);margin-bottom:3px}
+.wx-now{display:flex;align-items:baseline;gap:10px;margin-top:12px}
+.wx-now .deg{font-family:var(--display);font-weight:800;font-size:42px;line-height:1;font-variant-numeric:tabular-nums}
+.wx-now .cond{font-size:15px;color:#CFDCD7}
+.wx-tee{margin-top:14px;padding-top:12px;border-top:1px solid rgba(26,65,64,.6);font-size:15px;color:#CFDCD7}
+.wx-tee .k{font-family:var(--display);font-size:14px;letter-spacing:.05em;color:var(--chalk-dim);display:block}
+.wx-tee b{font-family:var(--display);font-weight:700;font-size:20px;color:var(--chalk);font-variant-numeric:tabular-nums}
+.wx-tee .wet{color:var(--flag)}
+.wx-msg{color:var(--chalk-dim);font-style:italic;font-size:15px}
+.wx-credit{font-size:13px;color:var(--chalk-dim);margin:10px 0 0}
 footer{padding:44px 0 60px;color:var(--chalk-dim);font-size:15px}
 footer .sig{font-family:var(--display);font-size:19px;color:var(--chalk);letter-spacing:.04em}
 
@@ -283,6 +296,7 @@ footer .sig{font-family:var(--display);font-size:19px;color:var(--chalk);letter-
     <nav class="bar-nav">
       <a href="#leaderboard">Leaderboard</a>
       <a href="#pairings">Pairings</a>
+      <a href="#weather">Weather</a>
       <a href="#field">Field</a>
       <a href="#medalist">Courses</a>
       <a href="#base">Home base</a>
@@ -383,9 +397,20 @@ footer .sig{font-family:var(--display);font-size:19px;color:var(--chalk);letter-
     </div>
     <div class="callout" style="margin-bottom:26px">
       <h4>Thursday morning</h4>
-      <p>We gather at the Game Warden's house at 8:00 am and pull out at 8:15 sharp. Eat first, and put your clubs in the night before if you can.</p>
+      <p>We gather at the Game Warden's house at 8:00 am and pull out at 8:15 sharp. Breakfast is on the road, so don't eat first. Load your clubs the night before if you can.</p>
     </div>
     <div id="pairings-list"></div>
+  </div>
+</section>
+
+<section id="weather">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>WEATHER</h2>
+      <p>Conditions at each course, and the forecast for your tee time. Refreshes every time you open the page.</p>
+    </div>
+    <div class="wx" id="wx"></div>
+    <p class="wx-credit">Forecasts from Open-Meteo.</p>
   </div>
 </section>
 
@@ -687,6 +712,59 @@ footer .sig{font-family:var(--display);font-size:19px;color:var(--chalk);letter-
     if(!s) return '<div class="sponsor">Logo to come</div>';
     return '<div class="sponsor has' + (s.photo ? ' photo' : '') + '">' + (s.logo ? '<img src="' + s.logo + '" alt="' + esc(s.name) + '">' : esc(s.name)) + '</div>';
   }).join('');
+
+  /* ---------- weather ---------- */
+  (function(){
+    var box = document.getElementById('wx'); if(!box) return;
+    var SITES = [
+      {k:'Round I', n:'The Medalist',        lat:42.3538, lon:-84.9949, tee:'2026-10-08T11:00', when:'Thu 11:03'},
+      {k:'Round II', n:'Beeches',            lat:42.3832, lon:-86.2003, tee:'2026-10-09T08:00', when:'Fri 8:20'},
+      {k:'Round III', n:'Lake Michigan Hills',lat:42.1602, lon:-86.3609, tee:'2026-10-09T14:00', when:'Fri 2:20'},
+      {k:'Round IV', n:'Riverside',          lat:42.2990, lon:-85.1836, tee:'2026-10-10T11:00', when:'Sat 11:00'}
+    ];
+    var WMO = {0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Freezing fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Showers',81:'Showers',82:'Heavy showers',85:'Snow showers',86:'Snow showers',95:'Thunderstorms',96:'Thunderstorms',99:'Thunderstorms'};
+    var lats = SITES.map(function(s){return s.lat;}).join(','), lons = SITES.map(function(s){return s.lon;}).join(',');
+    var base = 'https://api.open-meteo.com/v1/forecast?latitude=' + lats + '&longitude=' + lons +
+               '&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York';
+    var asList = function(j){ return Array.isArray(j) ? j : [j]; };
+    function skeleton(msg){
+      box.innerHTML = SITES.map(function(s){
+        return '<div class="wx-c"><div class="rd">' + s.k + '</div><h4>' + s.n + '</h4><p class="wx-msg">' + msg + '</p></div>';
+      }).join('');
+    }
+    function render(now, tee){
+      box.innerHTML = SITES.map(function(s, i){
+        var h = '<div class="wx-c"><div class="rd">' + s.k + '</div><h4>' + s.n + '</h4>';
+        var c = now && now[i] && now[i].current;
+        if(c){
+          h += '<div class="wx-now"><div class="deg">' + Math.round(c.temperature_2m) + '&deg;</div>' +
+               '<div class="cond">' + (WMO[c.weather_code] || 'Weather') + '<br>wind ' + Math.round(c.wind_speed_10m) + ' mph</div></div>';
+        } else {
+          h += '<p class="wx-msg">Current conditions unavailable.</p>';
+        }
+        var hr = tee && tee[i] && tee[i].hourly;
+        if(hr){
+          var idx = hr.time.indexOf(s.tee);
+          if(idx > -1){
+            var pop = hr.precipitation_probability ? hr.precipitation_probability[idx] : null;
+            h += '<div class="wx-tee"><span class="k">At the tee &middot; ' + s.when + '</span>' +
+                 '<b>' + Math.round(hr.temperature_2m[idx]) + '&deg;</b> ' + (WMO[hr.weather_code[idx]] || '') +
+                 (pop === null ? '' : ', <span class="' + (pop >= 40 ? 'wet' : '') + '">' + pop + '% rain</span>') +
+                 ', wind ' + Math.round(hr.wind_speed_10m[idx]) + ' mph</div>';
+          }
+        }
+        return h + '</div>';
+      }).join('');
+    }
+    skeleton('Loading\u2026');
+    var pNow = fetch(base + '&current=temperature_2m,weather_code,wind_speed_10m&forecast_days=1').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+    var pTee = fetch(base + '&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m&start_date=2026-10-08&end_date=2026-10-10').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+    Promise.all([pNow, pTee]).then(function(res){
+      var now = res[0] ? asList(res[0]) : null, tee = res[1] ? asList(res[1]) : null;
+      if(!now && !tee){ skeleton('Weather unavailable right now.'); return; }
+      render(now, tee);
+    }).catch(function(){ skeleton('Weather unavailable right now.'); });
+  })();
 
   /* ---------- pairings ---------- */
   (function(){
