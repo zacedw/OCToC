@@ -21,7 +21,27 @@
     "bryan": 53
    }
   },
-  null,
+  {
+   "name": "Skins",
+   "format": "indiv",
+   "rec": true,
+   "place": {
+    "eric": 3,
+    "art": 2,
+    "zack": 2,
+    "john": 1,
+    "josh": 2,
+    "bryan": 1
+   },
+   "gross": {
+    "eric": 45,
+    "art": 49,
+    "zack": 49,
+    "john": 48,
+    "josh": 50,
+    "bryan": 43
+   }
+  },
   null,
   null,
   null,
@@ -30,5 +50,5 @@
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-08T22:04:15.585Z"
+ "updated": "2026-10-08T22:11:35.636Z"
 }
