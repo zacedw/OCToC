@@ -105,10 +105,23 @@
     "bryan": 0
    }
   },
-  null,
+  {
+   "name": "Scramble",
+   "format": "three",
+   "rec": false,
+   "place": {
+    "eric": 2,
+    "art": 2,
+    "zack": 1,
+    "john": 1,
+    "josh": 1,
+    "bryan": 2
+   },
+   "gross": null
+  },
   null,
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-09T22:53:39.847Z"
+ "updated": "2026-10-09T22:54:07.501Z"
 }
