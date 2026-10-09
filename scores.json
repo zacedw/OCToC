@@ -63,12 +63,32 @@
     "bryan": 0
    }
   },
-  null,
+  {
+   "name": "Aggregate",
+   "format": "three",
+   "rec": true,
+   "place": {
+    "eric": 1,
+    "art": 2,
+    "zack": 1,
+    "john": 2,
+    "josh": 1,
+    "bryan": 2
+   },
+   "gross": {
+    "eric": 0,
+    "art": 0,
+    "zack": 0,
+    "john": 0,
+    "josh": 0,
+    "bryan": 0
+   }
+  },
   null,
   null,
   null,
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-09T17:03:14.021Z"
+ "updated": "2026-10-09T17:03:57.259Z"
 }
