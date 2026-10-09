@@ -42,7 +42,27 @@
     "bryan": 43
    }
   },
-  null,
+  {
+   "name": "Match Play (Position Round)",
+   "format": "indiv",
+   "rec": true,
+   "place": {
+    "eric": 1,
+    "art": 1,
+    "zack": 2,
+    "john": 2,
+    "josh": 2,
+    "bryan": 1
+   },
+   "gross": {
+    "eric": 0,
+    "art": 0,
+    "zack": 0,
+    "john": 0,
+    "josh": 0,
+    "bryan": 0
+   }
+  },
   null,
   null,
   null,
@@ -50,5 +70,5 @@
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-08T22:11:38.669Z"
+ "updated": "2026-10-09T17:03:14.021Z"
 }
