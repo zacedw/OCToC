@@ -97,12 +97,12 @@
     "bryan": 1
    },
    "gross": {
-    "eric": 0,
-    "art": 0,
-    "zack": 0,
+    "eric": 49,
+    "art": 45,
+    "zack": 47,
     "john": 0,
-    "josh": 0,
-    "bryan": 0
+    "josh": 50,
+    "bryan": 50
    }
   },
   {
@@ -123,5 +123,5 @@
   null
  ],
  "bulletin": "Almost Done",
- "updated": "2026-10-10T01:08:35.854Z"
+ "updated": "2026-10-10T01:12:14.950Z"
 }
