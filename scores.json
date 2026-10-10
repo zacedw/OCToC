@@ -55,11 +55,11 @@
     "bryan": 1
    },
    "gross": {
-    "eric": 0,
-    "art": 0,
-    "zack": 0,
+    "eric": 43,
+    "art": 46,
+    "zack": 51,
     "john": 53,
-    "josh": 0,
+    "josh": 54,
     "bryan": 50
    }
   },
@@ -123,5 +123,5 @@
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-10T01:02:39.449Z"
+ "updated": "2026-10-10T01:05:16.743Z"
 }
