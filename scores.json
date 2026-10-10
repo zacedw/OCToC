@@ -58,9 +58,9 @@
     "eric": 0,
     "art": 0,
     "zack": 0,
-    "john": 0,
+    "john": 53,
     "josh": 0,
-    "bryan": 0
+    "bryan": 50
    }
   },
   {
@@ -123,5 +123,5 @@
   null
  ],
  "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-09T22:54:07.501Z"
+ "updated": "2026-10-10T01:02:39.449Z"
 }
