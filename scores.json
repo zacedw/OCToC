@@ -80,7 +80,7 @@
     "art": 43,
     "zack": 49,
     "john": 46,
-    "josh": 0,
+    "josh": 44,
     "bryan": 55
    }
   },
@@ -123,5 +123,5 @@
   null
  ],
  "bulletin": "Almost Done",
- "updated": "2026-10-10T01:08:15.837Z"
+ "updated": "2026-10-10T01:08:35.854Z"
 }
