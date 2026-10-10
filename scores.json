@@ -76,12 +76,12 @@
     "bryan": 2
    },
    "gross": {
-    "eric": 0,
-    "art": 0,
-    "zack": 0,
-    "john": 0,
+    "eric": 49,
+    "art": 43,
+    "zack": 49,
+    "john": 46,
     "josh": 0,
-    "bryan": 0
+    "bryan": 55
    }
   },
   {
@@ -122,6 +122,6 @@
   null,
   null
  ],
- "bulletin": "After two rounds, everyone is still in it!",
- "updated": "2026-10-10T01:05:16.743Z"
+ "bulletin": "Almost Done",
+ "updated": "2026-10-10T01:08:15.837Z"
 }
